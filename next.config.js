@@ -15,4 +15,9 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: ["https://example-apis.vercel.app"],
+  },
+};

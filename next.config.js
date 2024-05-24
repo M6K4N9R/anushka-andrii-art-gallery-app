@@ -4,6 +4,9 @@ const nextConfig = {
     styledComponents: true,
   },
   reactStrictMode: true,
+  images: {
+    domains: ["https://example-apis.vercel.app"],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -12,12 +15,5 @@ const nextConfig = {
     });
 
     return config;
-  },
-};
-
-const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: ["https://example-apis.vercel.app"],
   },
 };

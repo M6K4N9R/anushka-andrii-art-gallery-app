@@ -1,5 +1,6 @@
 import ArtPiecePreview from "../ArtPiecePreview";
 import styled from "styled-components";
+import Link from "next/link";
 
 const List = styled.ul`
   display: flex;
@@ -22,12 +23,14 @@ export default function ArtPieces({ pieces }) {
     <List>
       {pieces?.map((piece) => (
         <li key={piece.slug}>
-          <ArtPiecePreview
-            title={piece.name}
-            image={piece.imageSource}
-            artist={piece.artist}
-            slug={piece.slug}
-          />
+          <Link href={`/art-pieces/${piece.slug}`}>
+            <ArtPiecePreview
+              title={piece.name}
+              image={piece.imageSource}
+              artist={piece.artist}
+              slug={piece.slug}
+            />
+          </Link>
         </li>
       ))}
     </List>

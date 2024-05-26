@@ -30,6 +30,8 @@ export default function App({ Component, pageProps }) {
     setArtPieces(data);
   }, [data]);
 
+
+
   return (
     <>
       <GlobalStyle />
@@ -41,4 +43,3 @@ export default function App({ Component, pageProps }) {
 
 // On to userstory 5
 // Test commit 1
-

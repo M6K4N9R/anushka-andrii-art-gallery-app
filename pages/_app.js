@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import GlobalStyle from "../styles";
 
 import { useImmerLocalStorageState } from "@/lib/hook/useImmerLocalStorageState";
@@ -32,11 +33,8 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component
-        {...pageProps}
-        pieces={isLoading || error ? [] : data}
-        artPiecesInfo={artPieces}
-      />
+      <Layout />
+      <Component {...pageProps} pieces={isLoading || error ? [] : artPieces} />
     </>
   );
 }

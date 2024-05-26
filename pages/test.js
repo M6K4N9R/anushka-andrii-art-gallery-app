@@ -1,5 +1,16 @@
-const myName = "Anushka";
+const Home = ({ name }) => {
+  return <div>{`${name}s Home`}</div>;
+};
 
-export default function MyTest({ myName }) {
-  return <h1>Test page</h1>;
-}
+const Main = () => {
+  return (
+    <>
+      <Home />
+      <div>Main</div>
+    </>
+  );
+};
+
+const Favs = () => {
+  return <div>Favs</div>;
+};

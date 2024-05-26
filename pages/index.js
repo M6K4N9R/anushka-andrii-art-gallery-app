@@ -5,7 +5,7 @@ export default function SpotlightPage({ pieces }) {
   const spotlightArtPiece = pieces
     ? pieces[Math.floor(Math.random() * (pieces.length - 1))]
     : {};
-  // console.log(spotlightArtPiece);
+  console.log(spotlightArtPiece);
 
   return (
     <div>

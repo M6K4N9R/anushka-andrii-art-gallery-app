@@ -8,8 +8,8 @@ export const StyledFulltImg = styled.img`
 export default function ArtPieceDetails({ image, name, artist, year, genre }) {
   return (
     <>
-      <Link href={"/art-pieces/"}>
-        <button>Go Back</button>
+      <Link href="/art-pieces">
+        <button> &#8592; Go Back</button>
       </Link>
       <h2>
         Learn more about {name} by{" "}

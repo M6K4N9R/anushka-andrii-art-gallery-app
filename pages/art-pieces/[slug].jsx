@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import ArtPieceDetails from "@/components/ArtPieceDetails";
 
+
 export default function ArtPieceDetailPage({ pieces }) {
   const router = useRouter();
   const { slug } = router.query;

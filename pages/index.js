@@ -1,15 +1,19 @@
-import ArtPieces from "@/components/ArtPieces/index.js";
+import Spotlight from "@/components/Spotlight";
 
 export default function SpotlightPage({ pieces }) {
-  console.log({ pieces });
-  const spotlightArtPiece =
-    pieces[Math.floor(Math.random() * (pieces.length - 1))];
+  // console.log({ pieces });
+  const spotlightArtPiece = pieces
+    ? pieces[Math.floor(Math.random() * (pieces.length - 1))]
+    : {};
+  console.log(spotlightArtPiece);
 
   return (
     <div>
       <h1>Art-Gallery App</h1>
-      {/* <title>Gallery-Spotlight</title> */}
-      <ArtPieces pieces={pieces} />
+      <Spotlight
+        image={spotlightArtPiece?.imageSource}
+        artist={spotlightArtPiece?.artist}
+      />
     </div>
   );
 }

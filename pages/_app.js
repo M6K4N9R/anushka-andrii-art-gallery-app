@@ -21,18 +21,18 @@ export default function App({ Component, pageProps }) {
   );
 
   console.log("data:", data);
-  const [artPieces, setArtPieces] = useImmerLocalStorageState(
+  const [artPieces, updateArtPieces] = useImmerLocalStorageState(
     "art-pieces-info",
     { defaultValue: [] }
   );
 
   useEffect(() => {
     if (data) {
-      setArtPieces(data);
+      updateArtPieces(data);
     }
-  }, [data, setArtPieces]);
+  }, [data, updateArtPieces]);
 
-  const [artPiecesInfo, setPiecesInfo] = useImmerLocalStorageState(
+  const [artPiecesInfo, updatePiecesInfo] = useImmerLocalStorageState(
     "art-pieces-favorites",
     { defaultValue: [] }
   );
@@ -44,12 +44,12 @@ export default function App({ Component, pageProps }) {
         isFavorite: false,
       }));
 
-      setPiecesInfo(changedData);
+      updatePiecesInfo(changedData);
     }
-  }, [artPieces, setPiecesInfo]);
+  }, [artPieces, updatePiecesInfo]);
 
   const toggleFavorite = (pieceSlug) => {
-    setArtPieces((draft) => {
+    updatePiecesInfo((draft) => {
       const piece = draft.find((art) => art.slug === pieceSlug);
       if (piece) {
         piece.isFavorite = !piece.isFavorite;
@@ -65,7 +65,8 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         pieces={isLoading || error ? [] : artPieces}
-        favorites={artPiecesInfo}
+        isFavorite={changedData.isFavorite}
+        onToggleFavorite={toggleFavorite}
       />
     </>
   );

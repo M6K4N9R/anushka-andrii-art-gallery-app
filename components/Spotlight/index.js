@@ -1,7 +1,7 @@
-import HeartFilled from "../../assets/heartFilled.svg?url";
-import HeartOutlined from "../../assets/heartOutline.svg?url";
+
 import styled from "styled-components";
 import Image from "next/image";
+import FavoriteButton from "../Favorite";
 
 // const ButtonFav = styled.button`
 //   border: none;

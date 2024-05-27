@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }) {
   );
 
   useEffect(() => {
-    if (artPieces) {
+    if (artPieces.length > 0) {
       const changedData = artPieces.map((piece) => ({
         ...piece,
         isFavorite: false,
@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }) {
 
       setPiecesInfo(changedData);
     }
-  });
+  }, [artPieces, setPiecesInfo]);
 
   const toggleFavorite = (pieceSlug) => {
     setArtPieces((draft) => {

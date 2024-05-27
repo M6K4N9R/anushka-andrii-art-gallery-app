@@ -33,8 +33,6 @@ export default function Spotlight({ image, artist, isFavorite, name }) {
       <h2>{artist}</h2>
       <button>
         <Image src={isFavorite ? HeartFilled : HeartOutlined} alt={name} />
-
-        
       </button>
     </>
   );

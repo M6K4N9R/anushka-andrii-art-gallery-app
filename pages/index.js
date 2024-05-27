@@ -13,6 +13,8 @@ export default function SpotlightPage({ pieces }) {
       <Spotlight
         image={spotlightArtPiece?.imageSource}
         artist={spotlightArtPiece?.artist}
+        isFavorite={spotlightArtPiece?.isFavorite}
+        name={spotlightArtPiece?.name}
       />
     </div>
   );

@@ -18,7 +18,7 @@ export default function SpotlightPage({
 
   return (
     <div>
-      <h1>Art-Gallery App</h1>
+      <title>Art-Gallery App</title>
       <Spotlight
         image={spotlightArtPiece?.imageSource}
         artist={spotlightArtPiece?.artist}

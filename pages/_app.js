@@ -23,6 +23,7 @@ export default function App({ Component, pageProps }) {
 
   console.log("data:", data);
 
+
   const [artPiecesInfo, setPiecesInfo] = useState([]);
 
   const toggleFavorite = (pieceSlug) => {
@@ -47,10 +48,33 @@ export default function App({ Component, pageProps }) {
 
   console.log("ArtPiece Info", artPiecesInfo);
 
+  function addComment(slug, newComment) {
+    const artPiece = artPiecesInfo.find((piece) => piece.slug === slug);
+    if (artPiece) {
+      setArtPiecesInfo(
+        artPiecesInfo.map((pieceInfo) => {
+          if (pieceInfo.slug === slug) {
+            return pieceInfo.comments
+              ? { ...pieceInfo, comments: [...pieceInfo.comments, newComment] }
+              : { ...pieceInfo, comments: [newComment] };
+          } else {
+            return pieceInfo;
+          }
+        })
+      );
+    } else {
+      setArtPiecesInfo([
+        ...artPiecesInfo,
+        { slug, isFavorite: false, comments: [newComment] },
+      ]);
+    }
+  }
+
   return (
     <>
       <GlobalStyle />
       <Layout />
+
       <SWRConfig value={{ fetcher }}>
         <Component
           {...pageProps}
@@ -60,6 +84,7 @@ export default function App({ Component, pageProps }) {
           
         />
       </SWRConfig>
+
     </>
   );
 }

@@ -5,8 +5,8 @@ const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  padding-left: 0;
-  margin: 0;
+  padding-left: 20px;
+  margin-left: 10px
   gap: 0.8rem;
   justify-content: center;
 
@@ -17,7 +17,9 @@ const List = styled.ul`
   }
 `;
 
+
 export default function ArtPieces({ pieces, onToggleFavorite, artPiecesInfo }) {
+
   return (
     <List>
       {pieces?.map((piece) => {
@@ -32,7 +34,9 @@ export default function ArtPieces({ pieces, onToggleFavorite, artPiecesInfo }) {
               image={piece.imageSource}
               artist={piece.artist}
               slug={piece.slug}
+
               onToggleFavorite={onToggleFavorite}
+
               isFavorite={isFavorite}
             />
           </li>

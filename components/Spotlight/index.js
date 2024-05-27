@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import FavoriteButton from "../FavoriteButton";
 import Image from "next/image";
 
@@ -24,6 +25,11 @@ import Image from "next/image";
 //     background-color: var(--nemo);
 //   }
 // `;
+const StyledSpotlightDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default function Spotlight({
   image,
@@ -35,13 +41,13 @@ export default function Spotlight({
 }) {
 
   return (
-    <>
-      <img src={image} height={300} width={300} alt={name} />
+    <StyledSpotlightDiv>
+      <img src={image} height={700} width={700} />
       <h2>{artist}</h2>
-      <FavoriteButton
+    </StyledSpotlightDiv>
+   <FavoriteButton
         isFavorite={isFavorite}
         onToggleFavorite={() => onToggleFavorite(slug)}
       />
-    </>
   );
 }

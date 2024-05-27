@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import GlobalStyle from "../styles";
 
 import { useImmerLocalStorageState } from "@/lib/hook/useImmerLocalStorageState";
-import { useEffect } from "react";
+import { useImmer, useEffect } from "react";
 import useSWR from "swr";
 
 const fetcher = async (...args) => {
@@ -19,6 +19,8 @@ export default function App({ Component, pageProps }) {
     "https://example-apis.vercel.app/api/art",
     fetcher
   );
+  
+
 
   console.log("data:", data);
   const [artPieces, setArtPieces] = useImmerLocalStorageState(
@@ -27,16 +29,37 @@ export default function App({ Component, pageProps }) {
   );
 
   useEffect(() => {
-    setArtPieces(data);
-  }, [data]);
+    if (data) {
+      const changedData = data.map((piece) => ({
+        ...piece,
+        isFavorite: false, // Set the initial value of isFavorite to false
+      }));
+      setArtPieces(changedData);
+    }
+  }, [data, setArtPieces]);
 
+  const toggleFavorite = (pieceSlug) => {
+    setArtPieces((draft) => {
+      const piece = draft.find((art) => art.slug === pieceSlug);
+      if (piece) {
+        piece.isFavorite = !piece.isFavorite;
+      }
+    });
+  };
+  
 
 
   return (
     <>
       <GlobalStyle />
       <Layout />
-      <Component {...pageProps} pieces={isLoading || error ? [] : artPieces} />
+      {/* <Component
+  {...pageProps}
+  pieces={isLoading || error ? [] : data}
+  artPiecesInfo={artPieces}
+  toggleFavorite={toggleFavorite}
+/> */}
+      <Component {...pageProps} pieces={isLoading || error ? [] : artPieces} onToggleFavorite={toggleFavorite} />
     </>
   );
 }

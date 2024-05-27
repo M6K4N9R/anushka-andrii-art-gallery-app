@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export const StyledFulltImg = styled.img`
-  width: 100%;
+  width: 70%;
 `;
 
 export default function ArtPieceDetails({ image, name, artist, year, genre }) {

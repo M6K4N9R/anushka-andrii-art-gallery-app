@@ -1,6 +1,4 @@
-
 import styled from "styled-components";
-import Image from "next/image";
 import FavoriteButton from "../Favorite";
 
 // const ButtonFav = styled.button`
@@ -26,14 +24,22 @@ import FavoriteButton from "../Favorite";
 //   }
 // `;
 
-export default function Spotlight({ image, artist, isFavorite, name }) {
+export default function Spotlight({
+  image,
+  artist,
+  isFavorite,
+  name,
+  onToggleFavorite,
+  slug,
+}) {
   return (
     <>
       <img src={image} height={300} width={300} alt={name} />
       <h2>{artist}</h2>
-      <button>
-        <Image src={isFavorite ? HeartFilled : HeartOutlined} alt={name} />
-      </button>
+      <FavoriteButton
+        isFavorite={isFavorite}
+        onToggleFavorite={() => onToggleFavorite(slug)}
+      />
     </>
   );
 }

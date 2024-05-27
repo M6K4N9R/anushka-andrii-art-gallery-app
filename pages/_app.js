@@ -38,17 +38,17 @@ export default function App({ Component, pageProps }) {
   );
 
   useEffect(() => {
-    if (artPieces.length > 0) {
-      const changedData = artPieces.map((piece) => ({
-        ...piece,
-        isFavorite: false,
-      }));
+    if (artPieces) {
+      const updatedFavoriteInfo = artPieces.map((piece) => {
+        
+      }, {});
 
-      updatePiecesInfo(changedData);
+      updatePiecesInfo(artPieces);
     }
   }, [artPieces, updatePiecesInfo]);
 
   const toggleFavorite = (pieceSlug) => {
+    console.log("Piece Slug on home page", pieceSlug);
     updatePiecesInfo((draft) => {
       const piece = draft.find((art) => art.slug === pieceSlug);
       if (piece) {
@@ -56,6 +56,15 @@ export default function App({ Component, pageProps }) {
       }
     });
   };
+
+  //   const toggleFavorite = (pieceSlug) => {
+  //   updatePiecesInfo((draft) => {
+  //     draft[pieceSlug] = {
+  //       ...draft[pieceSlug],
+  //       isFavorite: !draft[pieceSlug].isFavorite,
+  //     };
+  //   });
+  // };
 
   return (
     <>
@@ -65,7 +74,7 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         pieces={isLoading || error ? [] : artPieces}
-        isFavorite={changedData.isFavorite}
+        artPiecesInfo={artPiecesInfo}
         onToggleFavorite={toggleFavorite}
       />
     </>

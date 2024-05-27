@@ -1,6 +1,6 @@
 import Spotlight from "@/components/Spotlight";
 
-export default function SpotlightPage({ pieces }) {
+export default function SpotlightPage({ pieces, onToggleFavorite, artPiecesInfo }) {
   // console.log({ pieces });
   const spotlightArtPiece = pieces
     ? pieces[Math.floor(Math.random() * (pieces.length - 1))]
@@ -15,6 +15,8 @@ export default function SpotlightPage({ pieces }) {
         artist={spotlightArtPiece?.artist}
         isFavorite={spotlightArtPiece?.isFavorite}
         name={spotlightArtPiece?.name}
+        onToggleFavorite={onToggleFavorite}
+        slug={spotlightArtPiece?.slug}
       />
     </div>
   );

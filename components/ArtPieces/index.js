@@ -1,6 +1,5 @@
 import ArtPiecePreview from "../ArtPiecePreview";
 import styled from "styled-components";
-import Link from "next/link";
 
 const List = styled.ul`
   display: flex;
@@ -18,22 +17,31 @@ const List = styled.ul`
   }
 `;
 
-export default function ArtPieces({ pieces, isFavorite }) {
+
+export default function ArtPieces({ pieces, onToggleFavorite, artPiecesInfo }) {
+
   return (
     <List>
-      {pieces?.map((piece) => (
-        <li key={piece.slug}>
-          <Link href={`/art-pieces/${piece.slug}`}>
+      {pieces?.map((piece) => {
+        const hasInfo = artPiecesInfo.find(
+          (artPiece) => artPiece.slug === piece.slug
+        );
+        const isFavorite = hasInfo ? hasInfo.isFavorite : false;
+        return (
+          <li key={piece.slug}>
             <ArtPiecePreview
               title={piece.name}
               image={piece.imageSource}
               artist={piece.artist}
               slug={piece.slug}
+
+              onToggleFavorite={onToggleFavorite}
+
               isFavorite={isFavorite}
             />
-          </Link>
-        </li>
-      ))}
+          </li>
+        );
+      })}
     </List>
   );
 }

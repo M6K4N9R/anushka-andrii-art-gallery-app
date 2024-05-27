@@ -4,7 +4,7 @@ import Comments from "../Comment";
 import CommentForm from "../CommentForm";
 
 export const StyledFulltImg = styled.img`
-  width: 100%;
+  width: 70%;
 `;
 
 export default function ArtPieceDetails({

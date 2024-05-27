@@ -1,9 +1,9 @@
 import Layout from "@/components/Layout";
 import GlobalStyle from "../styles";
 
-import { useImmerLocalStorageState } from "@/lib/hook/useImmerLocalStorageState";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import useSWR, { SWRConfig } from "swr";
+import useLocalStorageState from "use-local-storage-state";
 
 // const fetcher = async (...args) => {
 //   const response = await fetch(...args);
@@ -23,52 +23,13 @@ export default function App({ Component, pageProps }) {
 
   console.log("data:", data);
 
+  const [_, setPiecesInfo] = useLocalStorageState("artPieces", {
+    defaultValue: [],
+  });
 
-  const [artPiecesInfo, setPiecesInfo] = useState([]);
-
-  const toggleFavorite = (pieceSlug) => {
-    console.log("Piece Slug", pieceSlug);
-
-    const hasPiece = artPiecesInfo.find((art) => art?.slug === pieceSlug);
-    if (hasPiece) {
-      const newArtPieces = artPiecesInfo.map((piece) => {
-        return piece.slug === pieceSlug
-          ? { ...piece, isFavorite: !piece.isFavorite }
-          : piece;
-      });
-      setPiecesInfo(newArtPieces);
-    } else {
-      const newArtPieces = [
-        ...artPiecesInfo,
-        { isFavorite: true, slug: pieceSlug },
-      ];
-      setPiecesInfo(newArtPieces);
-    }
-  };
-
-  console.log("ArtPiece Info", artPiecesInfo);
-
-  function addComment(slug, newComment) {
-    const artPiece = artPiecesInfo.find((piece) => piece.slug === slug);
-    if (artPiece) {
-      setArtPiecesInfo(
-        artPiecesInfo.map((pieceInfo) => {
-          if (pieceInfo.slug === slug) {
-            return pieceInfo.comments
-              ? { ...pieceInfo, comments: [...pieceInfo.comments, newComment] }
-              : { ...pieceInfo, comments: [newComment] };
-          } else {
-            return pieceInfo;
-          }
-        })
-      );
-    } else {
-      setArtPiecesInfo([
-        ...artPiecesInfo,
-        { slug, isFavorite: false, comments: [newComment] },
-      ]);
-    }
-  }
+  useEffect(() => {
+    setPiecesInfo(data);
+  }, [data, setPiecesInfo]);
 
   return (
     <>
@@ -76,15 +37,8 @@ export default function App({ Component, pageProps }) {
       <Layout />
 
       <SWRConfig value={{ fetcher }}>
-        <Component
-          {...pageProps}
-          pieces={isLoading || error ? [] : data}
-          artPiecesInfo={artPiecesInfo}
-          onToggleFavorite={toggleFavorite}
-          
-        />
+        <Component {...pageProps} pieces={isLoading || error ? [] : data} />
       </SWRConfig>
-
     </>
   );
 }

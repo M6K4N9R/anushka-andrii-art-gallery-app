@@ -2,6 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import Comments from "../Comment";
 import CommentForm from "../CommentForm";
+import { useRouter } from "next/router";
 
 export const StyledFulltImg = styled.img`
   width: 70%;
@@ -14,8 +15,12 @@ export default function ArtPieceDetails({
   year,
   genre,
   comments,
-  onSubmitComment,
 }) {
+  console.log({ comments });
+  const router = useRouter();
+
+  const { slug } = router.query;
+
   return (
     <>
       <Link href="/art-pieces">
@@ -40,8 +45,8 @@ export default function ArtPieceDetails({
           ability to transcend boundaries, leaving a lasting impression on all
           who experience it.
         </p>
-        <Comments comments={comments} />
-        <CommentForm onSubmitComment={onSubmitComment} />
+        {comments && <Comments comments={comments} />}
+        <CommentForm slug={slug} />
       </div>
     </>
   );

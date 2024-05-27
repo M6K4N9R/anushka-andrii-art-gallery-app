@@ -10,14 +10,7 @@ const styledTitle = styled.p`
   font-size: 18px;
 `;
 
-export default function ArtPiecePreview({
-  image,
-  title,
-  artist,
-  slug,
-  isFavorite,
-  onToggleFavorite,
-}) {
+export default function ArtPiecePreview({ image, title, artist, slug }) {
   return (
     <>
       <Link href={`/art-pieces/${slug}`}>
@@ -25,10 +18,7 @@ export default function ArtPiecePreview({
       </Link>
       <StyledHeading>{`${artist}`}</StyledHeading>
       <styledTitle>{`${title}`}</styledTitle>
-      <FavoriteButton
-        isFavorite={isFavorite}
-        onToggleFavorite={() => onToggleFavorite(slug)}
-      />
+      <FavoriteButton slug={slug} />
     </>
   );
 }

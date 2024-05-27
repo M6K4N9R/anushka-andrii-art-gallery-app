@@ -1,3 +1,4 @@
+import useLocalStorageState from "use-local-storage-state";
 import ArtPiecePreview from "../ArtPiecePreview";
 import styled from "styled-components";
 
@@ -17,16 +18,14 @@ const List = styled.ul`
   }
 `;
 
-
-export default function ArtPieces({ pieces, onToggleFavorite, artPiecesInfo }) {
-
+export default function ArtPieces({ pieces }) {
   return (
     <List>
       {pieces?.map((piece) => {
-        const hasInfo = artPiecesInfo.find(
-          (artPiece) => artPiece.slug === piece.slug
-        );
-        const isFavorite = hasInfo ? hasInfo.isFavorite : false;
+        // const hasInfo = artPiecesInfo?.find(
+        //   (artPiece) => artPiece.slug === piece.slug
+        // );
+        // const isFavorite = piece.isFavorite;
         return (
           <li key={piece.slug}>
             <ArtPiecePreview
@@ -34,10 +33,6 @@ export default function ArtPieces({ pieces, onToggleFavorite, artPiecesInfo }) {
               image={piece.imageSource}
               artist={piece.artist}
               slug={piece.slug}
-
-              onToggleFavorite={onToggleFavorite}
-
-              isFavorite={isFavorite}
             />
           </li>
         );

@@ -1,18 +1,16 @@
 import ArtPieces from "@/components/ArtPieces";
+import useLocalStorageState from "use-local-storage-state";
 
-export default function FavouritesPage({ pieces }) {
-  const isFavorite = pieces.filter((piece) => {
-    if (Array.isArray(artPiecesInfo) && artPiecesInfo.length > 0) {
-      return artPiecesInfo.find(
-        (artPiece) => artPiece.slug === piece.slug && artPiece.isFavorite
-      );
-    }
-    return false;
-  });
-  console.log(isFavorite);
+export default function FavouritesPage({ pieces, artPiecesInfo }) {
+  console.log({ pieces, artPiecesInfo });
+  const [favourites] = useLocalStorageState("favourites");
+  console.log("favourites:", favourites);
+  const isFavorite = pieces.filter((piece) => favourites?.includes(piece.slug));
+
+  console.log("isFav:", isFavorite);
   return (
     <>
-      <ArtPieces pieces={pieces} isFavorite={isFavorite} />
+      <ArtPieces pieces={isFavorite} />
     </>
   );
 }

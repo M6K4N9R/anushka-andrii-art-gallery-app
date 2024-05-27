@@ -1,11 +1,21 @@
 import Link from "next/link";
 import styled from "styled-components";
+import Comments from "../Comment";
+import CommentForm from "../CommentForm";
 
 export const StyledFulltImg = styled.img`
   width: 100%;
 `;
 
-export default function ArtPieceDetails({ image, name, artist, year, genre }) {
+export default function ArtPieceDetails({
+  image,
+  name,
+  artist,
+  year,
+  genre,
+  comments,
+  onSubmitComment,
+}) {
   return (
     <>
       <Link href="/art-pieces">
@@ -30,6 +40,8 @@ export default function ArtPieceDetails({ image, name, artist, year, genre }) {
           ability to transcend boundaries, leaving a lasting impression on all
           who experience it.
         </p>
+        <Comments comments={comments} />
+        <CommentForm onSubmitComment={onSubmitComment} />
       </div>
     </>
   );

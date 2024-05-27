@@ -21,24 +21,48 @@ export default function App({ Component, pageProps }) {
   );
 
   console.log("data:", data);
-  const [artPieces, setArtPieces] = useImmerLocalStorageState(
-    "art-pieces-info",
-    { defaultValue: [] }
-  );
+  const [artPieces, setArtPieces] = useImmerLocalStorageState("art-pieces", {
+    defaultValue: [],
+  });
 
   useEffect(() => {
     setArtPieces(data);
   }, [data]);
 
+  function addComment(slug, newComment) {
+    const artPiece = artPiecesInfo.find((piece) => piece.slug === slug);
+    if (artPiece) {
+      setArtPiecesInfo(
+        artPiecesInfo.map((pieceInfo) => {
+          if (pieceInfo.slug === slug) {
+            return pieceInfo.comments
+              ? { ...pieceInfo, comments: [...pieceInfo.comments, newComment] }
+              : { ...pieceInfo, comments: [newComment] };
+          } else {
+            return pieceInfo;
+          }
+        })
+      );
+    } else {
+      setArtPiecesInfo([
+        ...artPiecesInfo,
+        { slug, isFavorite: false, comments: [newComment] },
+      ]);
+    }
+  }
+
   return (
     <>
       <GlobalStyle />
       <Layout />
-      <Component {...pageProps} pieces={isLoading || error ? [] : artPieces} />
+      <Component
+        {...pageProps}
+        pieces={isLoading || error ? [] : artPieces}
+        onSubmitComment={addComment}
+      />
     </>
   );
 }
 
 // On to userstory 5
 // Test commit 1
-

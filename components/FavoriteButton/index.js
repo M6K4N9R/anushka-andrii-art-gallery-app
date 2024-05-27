@@ -7,7 +7,7 @@ export default function FavoriteButton({ isFavorite, onToggleFavorite }) {
   return (
     <button onClick={onToggleFavorite}>
       <Image
-        src={isFavorite ? HeartOutlined : HeartFilled}
+        src={isFavorite ? HeartFilled : HeartOutlined}
         aria-label="Mark as Favorite"
       />
     </button>

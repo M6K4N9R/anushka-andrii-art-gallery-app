@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import FavoriteButton from "../Favorite";
+import FavoriteButton from "../FavoriteButton";
+import Image from "next/image";
 
 // const ButtonFav = styled.button`
 //   border: none;
@@ -32,6 +33,7 @@ export default function Spotlight({
   onToggleFavorite,
   slug,
 }) {
+
   return (
     <>
       <img src={image} height={300} width={300} alt={name} />

@@ -2,81 +2,64 @@ import Layout from "@/components/Layout";
 import GlobalStyle from "../styles";
 
 import { useImmerLocalStorageState } from "@/lib/hook/useImmerLocalStorageState";
-import { useImmer, useEffect } from "react";
-import useSWR from "swr";
+import { useState, useEffect } from "react";
+import useSWR, { SWRConfig } from "swr";
 
-const fetcher = async (...args) => {
-  const response = await fetch(...args);
-  if (!response.ok) {
-    throw new Error(`Request with ${JSON.stringify(args)} failed.`);
-  }
-  return await response.json();
-};
+// const fetcher = async (...args) => {
+//   const response = await fetch(...args);
+//   if (!response.ok) {
+//     throw new Error(`Request with ${JSON.stringify(args)} failed.`);
+//   }
+//   return await response.json();
+// };
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function App({ Component, pageProps }) {
-  console.log({ Component, pageProps });
   const { data, isLoading, error } = useSWR(
     "https://example-apis.vercel.app/api/art",
     fetcher
   );
 
   console.log("data:", data);
-  const [artPieces, updateArtPieces] = useImmerLocalStorageState(
-    "art-pieces-info",
-    { defaultValue: [] }
-  );
 
-  useEffect(() => {
-    if (data) {
-      updateArtPieces(data);
-    }
-  }, [data, updateArtPieces]);
-
-  const [artPiecesInfo, updatePiecesInfo] = useImmerLocalStorageState(
-    "art-pieces-favorites",
-    { defaultValue: [] }
-  );
-
-  useEffect(() => {
-    if (artPieces) {
-      const updatedFavoriteInfo = artPieces.map((piece) => {
-        
-      }, {});
-
-      updatePiecesInfo(artPieces);
-    }
-  }, [artPieces, updatePiecesInfo]);
+  const [artPiecesInfo, setPiecesInfo] = useState([]);
 
   const toggleFavorite = (pieceSlug) => {
-    console.log("Piece Slug on home page", pieceSlug);
-    updatePiecesInfo((draft) => {
-      const piece = draft.find((art) => art.slug === pieceSlug);
-      if (piece) {
-        piece.isFavorite = !piece.isFavorite;
-      }
-    });
+    console.log("Piece Slug", pieceSlug);
+
+    const hasPiece = artPiecesInfo.find((art) => art?.slug === pieceSlug);
+    if (hasPiece) {
+      const newArtPieces = artPiecesInfo.map((piece) => {
+        return piece.slug === pieceSlug
+          ? { ...piece, isFavorite: !piece.isFavorite }
+          : piece;
+      });
+      setPiecesInfo(newArtPieces);
+    } else {
+      const newArtPieces = [
+        ...artPiecesInfo,
+        { isFavorite: true, slug: pieceSlug },
+      ];
+      setPiecesInfo(newArtPieces);
+    }
   };
 
-  //   const toggleFavorite = (pieceSlug) => {
-  //   updatePiecesInfo((draft) => {
-  //     draft[pieceSlug] = {
-  //       ...draft[pieceSlug],
-  //       isFavorite: !draft[pieceSlug].isFavorite,
-  //     };
-  //   });
-  // };
+  console.log("ArtPiece Info", artPiecesInfo);
 
   return (
     <>
       <GlobalStyle />
       <Layout />
-
-      <Component
-        {...pageProps}
-        pieces={isLoading || error ? [] : artPieces}
-        artPiecesInfo={artPiecesInfo}
-        onToggleFavorite={toggleFavorite}
-      />
+      <SWRConfig value={{ fetcher }}>
+        <Component
+          {...pageProps}
+          pieces={isLoading || error ? [] : data}
+          artPiecesInfo={artPiecesInfo}
+          onToggleFavorite={toggleFavorite}
+          
+        />
+      </SWRConfig>
     </>
   );
 }

@@ -39,15 +39,16 @@ export default function Spotlight({
   onToggleFavorite,
   slug,
 }) {
-
   return (
-    <StyledSpotlightDiv>
-      <img src={image} height={700} width={700} />
-      <h2>{artist}</h2>
-    </StyledSpotlightDiv>
-   <FavoriteButton
+    <>
+      <StyledSpotlightDiv>
+        <img src={image} height={700} width={700} />
+        <h2>{artist}</h2>
+      </StyledSpotlightDiv>
+      <FavoriteButton
         isFavorite={isFavorite}
         onToggleFavorite={() => onToggleFavorite(slug)}
       />
+    </>
   );
 }

@@ -20,7 +20,6 @@ export default function ArtPiecePreview({
 }) {
   return (
     <>
-
       <Link href={`/art-pieces/${slug}`}>
         <img src={image} height={350} width={400} />
       </Link>
@@ -30,7 +29,6 @@ export default function ArtPiecePreview({
         isFavorite={isFavorite}
         onToggleFavorite={() => onToggleFavorite(slug)}
       />
-
     </>
   );
 }

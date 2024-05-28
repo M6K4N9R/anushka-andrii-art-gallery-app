@@ -21,9 +21,7 @@ export default function App({ Component, pageProps }) {
     fetcher
   );
 
-  console.log("data:", data);
-
-  const [_, setPiecesInfo] = useLocalStorageState("artPieces", {
+  const [artPiecesInfo, setPiecesInfo] = useLocalStorageState("artPieces", {
     defaultValue: [],
   });
 
@@ -37,7 +35,10 @@ export default function App({ Component, pageProps }) {
       <Layout />
 
       <SWRConfig value={{ fetcher }}>
-        <Component {...pageProps} pieces={isLoading || error ? [] : data} />
+        <Component
+          {...pageProps}
+          pieces={isLoading || error ? [] : artPiecesInfo}
+        />
       </SWRConfig>
     </>
   );

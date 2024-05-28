@@ -24,7 +24,6 @@ export default function ArtPieceDetails({
   genre,
   comments,
 }) {
-  console.log({ comments });
   const router = useRouter();
 
   const { slug } = router.query;

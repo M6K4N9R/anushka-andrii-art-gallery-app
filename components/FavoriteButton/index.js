@@ -9,14 +9,13 @@ export default function FavoriteButton({ slug }) {
   });
 
   const onToggleFavorite = (slug) => {
-    console.log("slug:", slug);
     if (favourites.includes(slug)) {
       setFavourites(favourites.filter((favourite) => favourite !== slug));
     } else {
       setFavourites([...favourites, slug]);
     }
   };
-  // console.log("Heart", HeartFilled);
+
   return (
     <button onClick={() => onToggleFavorite(slug)}>
       <Image

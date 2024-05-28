@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
 import ArtPieceDetails from "@/components/ArtPieceDetails";
-
+import useLocalStorageState from "use-local-storage-state";
 
 export default function ArtPieceDetailPage({ pieces }) {
+  const [artPiecesInfo] = useLocalStorageState("artPieces");
+
   const router = useRouter();
   const { slug } = router.query;
 
@@ -10,7 +12,7 @@ export default function ArtPieceDetailPage({ pieces }) {
     return <div>Loading...</div>;
   }
 
-  const artPiece = pieces.find((piece) => piece.slug === slug);
+  const artPiece = artPiecesInfo?.find((piece) => piece.slug === slug);
 
   if (!artPiece) {
     return <div>Art piece not found</div>;
@@ -23,6 +25,7 @@ export default function ArtPieceDetailPage({ pieces }) {
       artist={artPiece.artist}
       year={artPiece.year}
       genre={artPiece.genre}
+      comments={artPiece.comments}
     />
   );
 }

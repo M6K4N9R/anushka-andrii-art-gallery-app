@@ -31,24 +31,14 @@ const StyledSpotlightDiv = styled.div`
   align-items: center;
 `;
 
-export default function Spotlight({
-  image,
-  artist,
-  isFavorite,
-  name,
-  onToggleFavorite,
-  slug,
-}) {
+export default function Spotlight({ image, artist, slug }) {
   return (
     <>
       <StyledSpotlightDiv>
         <img src={image} height={700} width={700} />
         <h2>{artist}</h2>
       </StyledSpotlightDiv>
-      <FavoriteButton
-        isFavorite={isFavorite}
-        onToggleFavorite={() => onToggleFavorite(slug)}
-      />
+      <FavoriteButton slug={slug} />
     </>
   );
 }

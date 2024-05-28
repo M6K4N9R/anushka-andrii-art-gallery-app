@@ -2,9 +2,18 @@ import Link from "next/link";
 import styled from "styled-components";
 import Comments from "../Comment";
 import CommentForm from "../CommentForm";
+import { useRouter } from "next/router";
+import { List } from "../List";
 
 export const StyledFulltImg = styled.img`
   width: 70%;
+`;
+
+const StyledColor = styled.li`
+  width: 2rem;
+  height: 2rem;
+  background-color: ${(props) => props.color};
+  border-radius: 50%;
 `;
 
 export default function ArtPieceDetails({
@@ -14,8 +23,11 @@ export default function ArtPieceDetails({
   year,
   genre,
   comments,
-  onSubmitComment,
 }) {
+  const router = useRouter();
+
+  const { slug } = router.query;
+
   return (
     <>
       <Link href="/art-pieces">
@@ -40,8 +52,8 @@ export default function ArtPieceDetails({
           ability to transcend boundaries, leaving a lasting impression on all
           who experience it.
         </p>
-        <Comments comments={comments} />
-        <CommentForm onSubmitComment={onSubmitComment} />
+        {comments && <Comments comments={comments} />}
+        <CommentForm slug={slug} />
       </div>
     </>
   );

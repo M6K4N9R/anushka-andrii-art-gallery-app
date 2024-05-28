@@ -12,7 +12,9 @@ const StyledTitle = styled.p`
 
 export const StyledArtInfoContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
 `;
 export default function ArtPiecePreview({ image, title, artist, slug }) {
   return (
@@ -29,8 +31,8 @@ export default function ArtPiecePreview({ image, title, artist, slug }) {
       <StyledArtInfoContainer>
         <StyledHeading>{`${artist}`}</StyledHeading>
         <FavoriteButton slug={slug} />
+        <StyledTitle>{`${title}`}</StyledTitle>
       </StyledArtInfoContainer>
-      <StyledTitle>{`${title}`}</StyledTitle>
     </>
   );
 }

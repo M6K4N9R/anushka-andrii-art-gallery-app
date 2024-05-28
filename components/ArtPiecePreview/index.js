@@ -14,7 +14,13 @@ export default function ArtPiecePreview({ image, title, artist, slug }) {
   return (
     <>
       <Link href={`/art-pieces/${slug}`}>
-        <img src={image} height={350} width={400} />
+        <img
+          className="framed"
+          src={image}
+          height={350}
+          width={400}
+          alt={"art-pieces"}
+        />
       </Link>
       <StyledHeading>{`${artist}`}</StyledHeading>
       <styledTitle>{`${title}`}</styledTitle>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import FavoriteButton from "../FavoriteButton";
 import Link from "next/link";
+import Image from "next/image";
 
 const StyledHeading = styled.h2`
   font-size: 22px;
@@ -22,7 +23,7 @@ export default function ArtPiecePreview({ image, title, artist, slug }) {
   return (
     <>
       <Link href={`/art-pieces/${slug}`}>
-        <img
+        <Image
           className="framed"
           src={image}
           height={350}

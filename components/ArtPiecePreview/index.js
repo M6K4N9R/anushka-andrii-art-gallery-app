@@ -6,10 +6,14 @@ const StyledHeading = styled.h2`
   font-size: 22px;
 `;
 
-const styledTitle = styled.p`
+const StyledTitle = styled.p`
   font-size: 18px;
 `;
 
+export const StyledArtInfoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export default function ArtPiecePreview({ image, title, artist, slug }) {
   return (
     <>
@@ -22,9 +26,11 @@ export default function ArtPiecePreview({ image, title, artist, slug }) {
           alt={"art-pieces"}
         />
       </Link>
-      <StyledHeading>{`${artist}`}</StyledHeading>
-      <styledTitle>{`${title}`}</styledTitle>
-      <FavoriteButton slug={slug} />
+      <StyledArtInfoContainer>
+        <StyledHeading>{`${artist}`}</StyledHeading>
+        <FavoriteButton slug={slug} />
+      </StyledArtInfoContainer>
+      <StyledTitle>{`${title}`}</StyledTitle>
     </>
   );
 }

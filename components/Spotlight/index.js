@@ -34,10 +34,10 @@ const StyledSpotlightDiv = styled.div`
 export default function Spotlight({ image, artist, slug }) {
   return (
     <>
-      <StyledSpotlightDiv>
+      <StyledSpotlightDiv className="framed">
         <img src={image} height={700} width={700} />
-        <h2>{artist}</h2>
       </StyledSpotlightDiv>
+      <h2>{artist}</h2>
       <FavoriteButton slug={slug} />
     </>
   );

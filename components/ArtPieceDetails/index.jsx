@@ -51,7 +51,11 @@ export default function ArtPieceDetails({
         Learn more about {name} by{" "}
         <span className="autor-styled">{artist}</span>
       </h2>
-      <StyledFulltImg src={image} alt={name}></StyledFulltImg>
+      <StyledFulltImg
+        className="framed"
+        src={image}
+        alt={name}
+      ></StyledFulltImg>
       <div>
         <h3>About</h3>
         <p>

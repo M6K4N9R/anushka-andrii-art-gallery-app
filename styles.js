@@ -2,10 +2,12 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 :root {
-  --primary-color: #073a65;
-  --primary-background: #cdb114;
+  --red: tomato;
+  --bgColor: bisque;
+  // --primary-color: #073a65;
+  // --primary-background: #cdb114;
 
-  --accent-color: #065c97;
+  // --accent-color: #065c97;
 }
 
   *,
@@ -25,12 +27,23 @@ export default createGlobalStyle`
   }
 
   body {
-    margin: 10px;
-    color: var(--primary-color)
-    display: flex;
-    flex-direction: column;
-    // padding: 60px;
+    // margin: 10px;
+    // color: var(--primary-color)
+    // display: flex;
+    // flex-direction: column;
+    // // padding: 60px;
 
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: var(--bgColor);
+
+  }
+
+  .framed {
+    box-shadow:
+      -50px -50px 0 -40px var(--red),
+      50px 50px 0 -40px var(--red);
   }
 
 a:hover {

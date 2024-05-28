@@ -44,7 +44,7 @@ export default function Spotlight({ image, artist, slug }) {
   return (
     <>
       <StyledSpotlightDiv className="framed">
-        <img src={image} height={700} width={700} />
+        <Image src={image} height={700} width={700} alt={slug} />
       </StyledSpotlightDiv>
       <StyledSpotlightContainer>
         <h2>{artist}</h2>

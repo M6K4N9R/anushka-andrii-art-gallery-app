@@ -2,6 +2,15 @@ import Image from "next/image";
 import HeartFilled from "../../assets/heartFilled.svg?url";
 import HeartOutlined from "../../assets/heartOutline.svg?url";
 import useLocalStorageState from "use-local-storage-state";
+import styled from "styled-components";
+
+const StyledFavButton = styled.button`
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: -7px;
+  right: 50px;
+`;
 
 export default function FavoriteButton({ slug }) {
   const [favourites, setFavourites] = useLocalStorageState("favourites", {
@@ -17,12 +26,12 @@ export default function FavoriteButton({ slug }) {
   };
 
   return (
-    <button onClick={() => onToggleFavorite(slug)}>
+    <StyledFavButton onClick={() => onToggleFavorite(slug)}>
       <Image
         src={favourites.includes(slug) ? HeartFilled : HeartOutlined}
         aria-label="Mark as Favorite"
         alt="Like button"
       />
-    </button>
+    </StyledFavButton>
   );
 }

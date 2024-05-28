@@ -1,5 +1,26 @@
 import useLocalStorageState from "use-local-storage-state";
 import dayjs from "dayjs";
+import styled from "styled-components";
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  max-width: 600px;
+`;
+
+const StyledLabel = styled.label`
+  align-self: flex-start;
+`;
+
+const StyledTextArea = styled.textarea`
+  width: 100%;
+  height: 10vh;
+`;
+
+// const StyledSubmitButton = styled.button`
+// `
 
 export default function CommentForm({ slug }) {
   const [artPiecesInfo, setPiecesInfo] = useLocalStorageState("artPieces");
@@ -39,10 +60,15 @@ export default function CommentForm({ slug }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} aria-label="add a comments for the art piece">
-      <label htmlFor="comment">Add a comment here:</label>
-      <textarea type="text" id="comment" name="comment" rows="4" required />
-      <button type="submit">Send</button>
-    </form>
+    <StyledForm
+      onSubmit={handleSubmit}
+      aria-label="add a comments for the art piece"
+    >
+      <StyledLabel htmlFor="comment">Add your comment here:</StyledLabel>
+      <StyledTextArea type="text" id="comment" name="comment" required />
+      <button className="button-submit" type="submit">
+        Send
+      </button>
+    </StyledForm>
   );
 }

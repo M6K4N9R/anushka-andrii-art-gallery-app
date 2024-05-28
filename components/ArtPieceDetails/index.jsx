@@ -9,11 +9,22 @@ export const StyledFulltImg = styled.img`
   width: 70%;
 `;
 
-const StyledColor = styled.li`
-  width: 2rem;
-  height: 2rem;
+const StyledColor = styled.div`
+  width: 20%;
+  height: 100px;
   background-color: ${(props) => props.color};
   border-radius: 50%;
+`;
+
+const StyledColorsContainer = styled.section`
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  height: 100px;
+  // border: 1px solid orange;
+  border-radius: 50px;
+  margin-bottom: 50px;
+  margin-top: 5px;
 `;
 
 export default function ArtPieceDetails({
@@ -23,10 +34,13 @@ export default function ArtPieceDetails({
   year,
   genre,
   comments,
+  colors,
 }) {
   const router = useRouter();
 
   const { slug } = router.query;
+
+  console.log("Colors", colors);
 
   return (
     <>
@@ -52,6 +66,13 @@ export default function ArtPieceDetails({
           ability to transcend boundaries, leaving a lasting impression on all
           who experience it.
         </p>
+        <br />
+        <h3>Color palette of the piece</h3>
+        <StyledColorsContainer>
+          {colors.map((color) => (
+            <StyledColor key={color} color={color} />
+          ))}
+        </StyledColorsContainer>
         {comments && <Comments comments={comments} />}
         <CommentForm slug={slug} />
       </div>

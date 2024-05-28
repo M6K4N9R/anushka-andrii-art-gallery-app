@@ -4,21 +4,18 @@ const nextConfig = {
     styledComponents: true,
   },
   reactStrictMode: true,
-
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "example-apis.vercel.app",
-        port: "",
-        pathname: "/assets/art/**",
+      },
+      {
+        protocol: "https",
+        hostname: "t4.ftcdn.net",
       },
     ],
   },
-
-  // images: {
-  //   domains: ["https://example-apis.vercel.app"],
-  // },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -29,3 +26,5 @@ const nextConfig = {
     return config;
   },
 };
+
+module.exports = nextConfig;

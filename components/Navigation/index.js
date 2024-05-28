@@ -9,7 +9,7 @@ const StyledNavBar = styled.nav`
   // border: 2px solid black;
   background-color: #d89e39;
   font-size: 25px;
-  color: ${({ $isActive }) => ($isActive ? "#f6834f" : "black")};
+  color: "black";
   z-index: 10;
 `;
 
@@ -22,31 +22,22 @@ const StyledList = styled.ul`
   pardding: 20px;
 `;
 
-const styledListElement = styled.li``;
+const StyledListElement = styled.li``;
 
 export default function Navigation() {
   const router = useRouter();
   return (
     <StyledNavBar>
       <StyledList>
-        <styledListElement className="nav-lists">
-          <Link href="/" $isActive={router.pathname === "/"}>
-            Spotlight Page
-          </Link>
-        </styledListElement>
-        <styledListElement className="nav-lists">
-          <Link
-            href="/art-pieces"
-            $isActive={router.pathname === "/art-pieces"}
-          >
-            Art-Pieces
-          </Link>
-        </styledListElement>
-        <styledListElement>
-          <Link href="/favorites" $isActive={router.pathname === "/favorites"}>
-            Favourites
-          </Link>
-        </styledListElement>
+        <StyledListElement className="nav-lists">
+          <Link href="/">Spotlight Page</Link>
+        </StyledListElement>
+        <StyledListElement className="nav-lists">
+          <Link href="/art-pieces">Art-Pieces</Link>
+        </StyledListElement>
+        <StyledListElement>
+          <Link href="/favorites">Favourites</Link>
+        </StyledListElement>
       </StyledList>
     </StyledNavBar>
   );

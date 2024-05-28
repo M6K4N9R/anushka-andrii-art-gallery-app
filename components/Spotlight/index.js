@@ -40,7 +40,12 @@ const StyledSpotlightContainer = styled.div`
   margin-top: 30px;
 `;
 
-export default function Spotlight({ image, artist, slug }) {
+export default function Spotlight({
+  image = "https://t4.ftcdn.net/jpg/01/89/81/53/360_F_189815309_AIuYLElRzXQBg8a2ARgDPCVk1Y4wYGOY.jpg",
+  artist,
+  slug="FIX ME",
+}) {
+  
   return (
     <>
       <StyledSpotlightDiv className="framed">

@@ -31,7 +31,7 @@ const StyledSpotlightDiv = styled.div`
   align-items: center;
 `;
 
-export default function Spotlight({ image, artist, name, slug }) {
+export default function Spotlight({ image, artist, slug }) {
   return (
     <>
       <StyledSpotlightDiv>

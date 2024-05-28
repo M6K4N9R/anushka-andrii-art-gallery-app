@@ -1,4 +1,5 @@
 import useLocalStorageState from "use-local-storage-state";
+import dayjs from "dayjs";
 
 export default function CommentForm({ slug }) {
   const [artPiecesInfo, setPiecesInfo] = useLocalStorageState("artPieces");
@@ -30,7 +31,10 @@ export default function CommentForm({ slug }) {
     e.preventDefault();
     const { comment } = e.target.elements;
     console.log("comment", comment.value);
-    addComment(slug, comment.value);
+    addComment(
+      slug,
+      `${comment.value} - ${dayjs().format("YYYY-MM-DD HH:mm:ss A")}`
+    );
     e.target.reset();
   }
 

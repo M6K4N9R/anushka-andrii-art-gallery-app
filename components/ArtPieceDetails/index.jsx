@@ -3,9 +3,17 @@ import styled from "styled-components";
 import Comments from "../Comment";
 import CommentForm from "../CommentForm";
 import { useRouter } from "next/router";
+import { List } from "../List";
 
 export const StyledFulltImg = styled.img`
   width: 70%;
+`;
+
+const StyledColor = styled.li`
+  width: 2rem;
+  height: 2rem;
+  background-color: ${(props) => props.color};
+  border-radius: 50%;
 `;
 
 export default function ArtPieceDetails({

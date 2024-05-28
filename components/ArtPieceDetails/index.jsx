@@ -7,6 +7,7 @@ import { List } from "../List";
 
 export const StyledFulltImg = styled.img`
   width: 70%;
+  align
 `;
 
 const StyledColor = styled.div`

@@ -25,13 +25,20 @@ import Image from "next/image";
 //     background-color: var(--nemo);
 //   }
 // `;
-const StyledSpotlightDiv = styled.div`
+export const StyledSpotlightDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-
+const StyledSpotlightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 30px;
+`;
 
 export default function Spotlight({ image, artist, slug }) {
   return (
@@ -39,8 +46,10 @@ export default function Spotlight({ image, artist, slug }) {
       <StyledSpotlightDiv className="framed">
         <img src={image} height={700} width={700} />
       </StyledSpotlightDiv>
-      <h2>{artist}</h2>
-      <FavoriteButton slug={slug} />
+      <StyledSpotlightContainer>
+        <h2>{artist}</h2>
+        <FavoriteButton slug={slug} />
+      </StyledSpotlightContainer>
     </>
   );
 }

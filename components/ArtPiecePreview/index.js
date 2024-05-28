@@ -8,6 +8,7 @@ const StyledHeading = styled.h2`
 
 const StyledTitle = styled.p`
   font-size: 18px;
+  margin-top: -10px;
 `;
 
 export const StyledArtInfoContainer = styled.div`
@@ -15,6 +16,7 @@ export const StyledArtInfoContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
+  margin-bottom: 20px;
 `;
 export default function ArtPiecePreview({ image, title, artist, slug }) {
   return (

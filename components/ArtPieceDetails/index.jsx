@@ -7,7 +7,7 @@ import { List } from "../List";
 
 export const StyledFulltImg = styled.img`
   width: 70%;
-  align
+  margin: 0 auto;
 `;
 
 const StyledColor = styled.div`
@@ -44,9 +44,9 @@ export default function ArtPieceDetails({
   console.log("Colors", colors);
 
   return (
-    <>
+    <div className="details-page-container">
       <Link href="/art-pieces">
-        <button> &#8592; Go Back</button>
+        <button className="button-go-back"> &#8592; Go Back</button>
       </Link>
       <h2>
         Learn more about {name} by{" "}
@@ -81,6 +81,6 @@ export default function ArtPieceDetails({
         {comments && <Comments comments={comments} />}
         <CommentForm slug={slug} />
       </div>
-    </>
+    </div>
   );
 }

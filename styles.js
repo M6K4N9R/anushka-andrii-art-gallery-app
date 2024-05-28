@@ -50,10 +50,12 @@ a:hover {
   color: black
 }
 
+
+
 // Submit Button custom Styling
 
 
-.button-submit {
+.button-submit, .button-go-back {
   width: 30%;
   appearance: none;
   background-color: #d89e39;
@@ -79,7 +81,16 @@ a:hover {
   white-space: nowrap;
 }
 
+.button-go-back {
+  width: 15%;
+}
+
 .button-submit:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-go-back:focus:not(:focus-visible):not(.focus-visible) {
   box-shadow: none;
   outline: none;
 }
@@ -88,7 +99,16 @@ a:hover {
   background-color: #8a621c;
 }
 
+.button-go-back:hover {
+  background-color: #8a621c;
+}
+
 .button-submit:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-go-back:focus {
   box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
   outline: none;
 }
@@ -101,6 +121,11 @@ a:hover {
 }
 
 .button-submit:active {
+  background-color: #8a621c;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.button-go-back:active {
   background-color: #8a621c;
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }

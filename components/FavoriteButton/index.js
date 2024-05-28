@@ -10,7 +10,7 @@ export default function FavoriteButton({ slug }) {
 
   const onToggleFavorite = (slug) => {
     if (favourites.includes(slug)) {
-      setFavourites(favourites.filter((favourite) => favourite !== slug));
+      setFavourites(favourites?.filter((favourite) => favourite !== slug));
     } else {
       setFavourites([...favourites, slug]);
     }
